@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>margin</title>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+        <!-- <meta http-equiv="refresh" content="10"> -->
+        <style>
+            body {
+                margin: 0; padding: 0; color: white; font-size: 24px;
+            }
+            .current {
+                background: teal; width: 300px; height: 100px;
+                /* away from old content */
+                margin-top: 50px;
+                margin-left: 50px;
+
+                /* push new content away */
+                margin-bottom: 50px;
+                margin-right: 50px; 
+            }
+            .old {
+                background: orange; width: 300px; height: 100px;
+            }
+            .new {
+                background: blueviolet; width: 300px; height: 100px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <span class="old">Old Content</span>
+        <span class="current">Current Content</span>
+        <span class="new">New Content</span>
+        <hr>
+        <div class="old">Old Content</div>
+        <div class="current">Current Content</div>
+        <div class="new">New Content</div>
+    </body>
+</html>

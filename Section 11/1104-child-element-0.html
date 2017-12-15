@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Parent DIV and Child Elements</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <style>
+            body {
+                margin: 0px; padding: 0px; font-size: 36px; color: whitesmoke;
+            }
+            .parent {
+                width: 800px; height: 500px; background: orange;
+            }
+            .child {
+                width: 300px; height: 200px; background: teal;
+                margin-top: 100px; /* bug */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="parent">
+            <div class="child">
+                Second Scenario
+            </div>
+            
+        </div>
+    </body>
+</html>

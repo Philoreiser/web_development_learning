@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8;">
+        <title>Try Popup</title>
+    </head>
+    <body>
+        <a href="" target="" onclick="window.open('http://kanishkkunal.in','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">Popup "http://kanishkkunal.in"</a>
+
+        <br>
+        
+        <a href="" target="popup" onclick="window.open('./popup.php','popup','width=600,height=600,scrollbars=no,resizable=no'); return false;">Popup Window with "close button"</a>
+        <br>
+
+        <a href="" target="" onclick="popup()">My Popup Window</a>
+        <br>
+
+
+        <script language="javascript" type="text/javascript">
+
+            // var url = "./popup.php";
+            // var myPopup = document.getElementById("myPopup");
+            // myPopup.addEventListener("click", popup("./popup.php"), false );
+
+            function popup(myURL) {
+                try {
+                    if ( typeof myURL == "string") {
+                        window.open(myURL, 'popup', 'width=400px, height=600px,scrollbars=no,resizable=no');
+                    } else {
+                        window.open('./popup.php', 'popup', 'width=400px, height=600px,scrollbars=no,resizable=no');
+                    }
+                    
+                } catch (err) {
+                    console.log(err);
+                }
+                return false;
+            }
+        </script>
+
+        
+    </body>
+</html>

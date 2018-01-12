@@ -10,14 +10,13 @@
 Dim fileUpload
 Set fileUpload = Server.CreateObject("SoftArtisans.FileUp")
 
-fileUpload.Path = "D:\SayLingWen\Htmlroot\test\uploads"
+fileUpload.Path = "/Path/to/Save/Uploaded/Files/"
 
 '--- Check to be sure there was a file selected in the form
 '--- If so, continue processing
 If IsObject(fileUpload.Form("myFile")) Then
 If Not fileUpload.Form("myFile").IsEmpty Then
 
-'fileUpload.SaveAs "D:\SayLingWen\Htmlroot\test\uploads\upload.pdf" 
 fileUpload.Save
 
 Response.Write "FileUp Saved the File Successfully."

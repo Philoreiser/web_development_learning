@@ -1,1 +1,1 @@
-# web_development_learning
+# web_development_study

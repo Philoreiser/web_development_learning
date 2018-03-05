@@ -51,20 +51,61 @@
     <script>
 
         var preFieldNum = 3; // preColNum
-        var breakCol = 17;
-        var breakRow = 7;
+        var breakCol = 16;
+        // var breakRowIndex = 7;
+        var breakRowIndex = $("#tb-group-all").find('tr:gt(0)').length;
+
+        $(document).ready(function(){
+            let colSize = $("#tb-group-all").find('tr:eq(0)').find('td,th').length;
+            console.log(colSize);
+
+            var rows = $("#tb-group-all").find('tr:gt(0)').each(function(index, row){
+                // console.log("row: ", index);
+                // console.log(checkRowExactFields( $(row), preFieldNum));
+                var fieldsBound = checkRowExactFields( $(row), preFieldNum);
+                // console.log(fieldsBound);
+
+                if (fieldsBound.upper > preFieldNum + breakCol - 1) {
+                    breakRowIndex = index + 1;
+                    breakCol = fieldsBound.lower - preFieldNum;
+                    
+                    return false;
+                }
+            });
+
+            console.log(breakRowIndex);
+            console.log(breakCol);
+
+            if (colSize > breakCol) {
+                splitTable( $("#tb-group-all"), preFieldNum, breakRowIndex, breakCol);
+            }
+
+        });
         
         $("#btn-split-table").on("click", function(){
-            var data = getTableData( $("#tb-group-all") );
-            console.log(data);
+            // var data = getTableData( $("#tb-group-all") );
+            // console.log(data);
 
-            splitTable( $("#tb-group-all"), preFieldNum, breakRow, breakCol);
+            splitTable( $("#tb-group-all"), preFieldNum, breakRowIndex, breakCol);
         });
 
-        // $("#btn-del-col").on("click", function(){
+        
 
-        //     removeTableColumns( $("#tb-group-all"), 3, 9 );
-        // });
+        function checkRowExactFields(rowNode, preFieldNum) {
+            var fieldsIndex = Array();
+
+            rowNode.find('td').each(function(index,col) {
+                if ( index > preFieldNum-1 && $(col).text() !== "" ) {
+                    // console.log( "index:", index, "length:", $(col).text().length);
+                    fieldsIndex.push(index);
+                }
+            });
+
+            return {
+                "upper": Math.max.apply(Math, fieldsIndex), 
+                "lower": Math.min.apply(Math, fieldsIndex) 
+            };
+        }
 
         function splitTable(tableNode, preColNum, indexRow, indexCol) {
 

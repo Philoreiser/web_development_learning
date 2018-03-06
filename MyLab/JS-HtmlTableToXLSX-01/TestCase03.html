@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8;">
+    <style type="text/css">
+        table.tableizer-table {
+            font-size: 12px;
+            border: 1px solid #CCC; 
+            font-family: Arial, Helvetica, sans-serif;
+        } 
+        .tableizer-table td {
+            /* padding: 4px;
+            margin: 3px; */
+            border: 1px solid #CCC;
+        }
+        .tableizer-table th {
+            background-color: #104E8B; 
+            color: #FFF;
+            font-weight: bold;
+        }
+    </style>
+    
+    <script src="JS/FileSaver.js"></script>
+    <script src="JS/jszip.js"></script>
+    <script src="JS/myexcel.js"></script>
+    <script src="JS/jquery-3.2.1.min.js"></script>
+
+</head>
+
+<body>
+    <button id="btn-split-table">Try it!</button>
+    <!-- <button id="btn-del-col">Try delete column</button> -->
+    <table class="tableizer-table tb-group-type" id="tb-group-all">
+        
+        <tbody>
+         <tr class="tableizer-firstrow"><th>members</th><th>prop1</th><th>prop2</th><th>header1</th><th>header2</th><th>header3</th><th>header4</th><th>header5</th><th>header6</th><th>header7</th><th>header8</th><th>header9</th><th>header10</th><th>header11</th><th>header12</th><th>header13</th><th>header14</th><th>header15</th><th>header16</th><th>header17</th><th>header18</th><th>header19</th><th>header20</th><th>header21</th><th>header22</th><th>header23</th><th>header24</th><th>header25</th><th>header26</th><th>header27</th><th>header28</th><th>header29</th><th>header30</th></tr>
+
+         <tr><td>member01</td><td>prop1-01</td><td>prop2-01</td><td>data01</td><td>data02</td><td>data03</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+         <tr><td>member02</td><td>prop1-02</td><td>prop2-02</td><td></td><td></td><td></td><td>data04</td><td>data05</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+         <tr><td>member03</td><td>prop1-03</td><td>prop2-03</td><td></td><td></td><td></td><td></td><td></td><td>data06</td><td>data07</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+         <tr><td>member04</td><td>prop1-04</td><td>prop2-04</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>data08</td><td>data09</td><td>data10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+         <tr><td>member05</td><td>prop1-05</td><td>prop2-05</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>data11</td><td>data12</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+         <tr><td>member06</td><td>prop1-06</td><td>prop2-06</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>data13</td><td>data14</td><td>data15</td><td>data16</td><td>data17</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+         <tr><td>member07</td><td>prop1-07</td><td>prop2-07</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>data18</td><td>data19</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+         <tr><td>member08</td><td>prop1-08</td><td>prop2-08</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>data20</td><td>data21</td><td>data22</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+         <tr><td>member09</td><td>prop1-09</td><td>prop2-09</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>data23</td><td>data24</td><td>data25</td><td>data26</td><td></td><td></td><td></td><td></td></tr>
+         <tr><td>member10</td><td>prop1-10</td><td>prop2-10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>data27</td><td>data28</td><td></td><td></td></tr>
+         <tr><td>member11</td><td>prop1-11</td><td>prop2-11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>data29</td><td>data30</td></tr>
+        </tbody>
+    </table>
+
+
+    <script>
+        
+        $("#btn-split-table").on("click", function(){
+            var preFieldNum = 3; // preColNum
+            var breakCol = 20;
+
+            var breakRowIndex = $("#tb-group-all").find('tr:gt(0)').length;
+            let colSize = $("#tb-group-all").find('tr:eq(0)').find('td,th').length;
+            // console.log(colSize);
+
+            var rows = $("#tb-group-all").find('tr:gt(0)').each(function(index, row){
+                
+                var fieldsBound = checkRowExactFields( $(row), preFieldNum);
+
+
+                if (fieldsBound.upper > preFieldNum + breakCol - 1) {
+                    breakRowIndex = index + 1;
+                    breakCol = fieldsBound.lower - preFieldNum;
+                    
+                    return false;
+                }
+            });
+
+            // console.log(breakRowIndex);
+            // console.log(breakCol);
+
+            if (colSize > breakCol) {
+                splitTable( $("#tb-group-all"), preFieldNum, breakRowIndex, breakCol);
+                $("#tb-group-all").remove();
+            } else {
+                $("#tb-group-all").addClass("tb-export");
+            }
+
+            $(".tb-export").each(function(index, table){
+                console.log("index: ", index, " id:", $(table).attr("id"));
+
+                var fileName = "export-group-" + (index+1) + ".xlsx";
+                exportToXLSX( getTableData( $(this)), fileName );
+            });
+
+            // splitTable( $("#tb-group-all"), preFieldNum, breakRowIndex, breakCol);
+        });
+
+        function exportToXLSX(tableData, setFileName) {
+            var excel = $JExcel.new();
+            var fileName = "export.xlsx";
+            if (setFileName) {
+                fileName = String(setFileName);
+            }
+            for (var i = 0; i < tableData.length; i++) {
+                row = tableData[i];
+                for ( var j = 0; j < row.length; j++ ) {
+                    excel.set(0, j, i, row[j] );
+                }
+            }
+            excel.generate(fileName);
+        }
+
+        function getTableData(tableNode) {
+            var data =[];
+            tableNode.find('tr').each(function(rowIndexm, row) {
+                var cols = [];
+                $(this).find('th,td').each( function(colIndex, col) {
+                    cols.push(col.textContent);
+                });
+                data.push(cols);
+            });
+            return data;
+        }
+        
+
+        function checkRowExactFields(rowNode, preFieldNum) {
+            var fieldsIndex = Array();
+
+            rowNode.find('td').each(function(index,col) {
+                if ( index > preFieldNum-1 && $(col).text() !== "" ) {
+                    // console.log( "index:", index, "length:", $(col).text().length);
+                    fieldsIndex.push(index);
+                }
+            });
+
+            return {
+                "upper": Math.max.apply(Math, fieldsIndex), 
+                "lower": Math.min.apply(Math, fieldsIndex) 
+            };
+        }
+
+        function splitTable(tableNode, preColNum, indexRow, indexCol) {
+
+            var rowNum = tableNode.find('tr').length;
+            var colNum = tableNode.find('tr:eq(1) td').length;
+
+            var tbClone1 = tableNode.clone().appendTo("body").attr("id","tb-clone-1").css("background","yellow");
+            var tbClone2 = tableNode.clone().appendTo("body").attr("id","tb-clone-2").css("background","red");
+
+            removeTableRows(tbClone1, indexRow , rowNum-1);
+            removeTableRows(tbClone2, 1 , indexRow-1);
+
+            removeTableColumns(tbClone1, preColNum + indexCol, colNum-1);
+            removeTableColumns(tbClone2, preColNum, preColNum + indexCol -1);
+
+            tbClone1.addClass("tb-export");
+            tbClone2.addClass("tb-export");
+
+            console.log("row:", rowNum, " col:", colNum );
+        }
+
+        function removeTableRows(tableNode, startIndex, endIndex) {
+            var tr = "tr:lt(" + (endIndex+1) +"):gt("+ (startIndex-1) +")";
+
+            // tableNode.find(tr).css("background", "green");
+            tableNode.find(tr).remove();
+
+        }
+
+        function removeTableColumns( tableNode, startIndex, endIndex) {
+            var td = "td:lt(" + (endIndex+1) +"):gt("+ (startIndex-1) +")";
+            var th = "th:lt(" + (endIndex+1) +"):gt("+ (startIndex-1) +")";
+
+            // tableNode.find('tr').find( td + "," + th ).css("background", "red");
+            tableNode.find('tr').find( td + "," + th ).remove();
+        }
+
+    </script>
+</body>
+

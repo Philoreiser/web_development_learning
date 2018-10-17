@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>PDFObjet Example</title>
+
+        <link rel="stylesheet" href="../css/demo_style.css">
+
+        <style>
+            /*
+            PDFObject appends the classname "pdfobject-container" to the target element.
+            This enables you to style the element differently depending on whether the embed was successful.
+            In this example, a successful embed will result in a large box.
+            A failed embed will not have dimensions specified, so you don't see an oddly large empty box.
+            */
+            .pdfobject-container {
+                width: 100%;
+                max-width: 600px;
+                height: 600px;
+                margin: 2em 0;
+            }
+            .pdfobject {
+                border: solid 1px #666;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <h1>PDFObject Example</h1>
+        <p>Embed PDF inside a single HTML document</p>
+
+        <div id="pdf"></div>
+
+        <script src="../js/pdfobject.min.js"></script>
+        <script>
+            var options = {
+                page: 1, // default: 1
+                pdfOpenParams: {
+                    navpanes: 1,
+                    view: "FitH",
+                    pagemode: "thumbs"
+                } // http://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/pdf_open_parameters.pdf
+            };
+
+            PDFObject.embed("../pdf/sample-3pp.pdf", "#pdf", options);
+        </script>
+    </body>
+</html>

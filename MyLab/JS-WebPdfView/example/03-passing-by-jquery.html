@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10"/>
+
+        <title>PDFObjet Example: Replace PDF with another one</title>
+
+        <link rel="stylesheet" href="../css/demo_style.css">
+
+        <style>
+            .pdfobject-container {
+                width: 100%;
+                max-width: 600px;
+                height: 600px;
+                margin: 2em 0;
+            }
+            .pdfobject {
+                border: solid 1px #666;
+            }
+
+            #result { padding: 1rem;}
+            .hidden {display: none;}
+            .success { color: #4F8A10; background-color: #DFF2BF; }
+            .fail { color: #D8000C; background-color: #FFBABA; }
+        </style>
+
+        <!-- <script src="../js/pdfobject.min.js"></script> -->
+        <!-- <script src="../js/jquery-3.2.1.min.js"></script> -->
+    </head>
+    <body>
+        <h1>PDFObject Example: Passing jQuery Element</h1>
+        <div id="pdf"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.js"></script>
+        <script src="../js/pdfobject.min.js"></script>
+        <script>
+            $(document).ready( function () {
+                var $container = $("#pdf");
+                PDFObject.embed("../pdf/sample-3pp.pdf", $container );
+            });
+        </script>
+    </body>
+</html>

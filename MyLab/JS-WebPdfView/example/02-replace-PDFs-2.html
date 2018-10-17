@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10"/>
+
+        <title>PDFObjet Example: Replace PDF with another one</title>
+
+        <link rel="stylesheet" href="../css/demo_style.css">
+
+        <style>
+            .pdfobject-container {
+                width: 100%;
+                max-width: 600px;
+                height: 600px;
+                margin: 2em 0;
+            }
+            .pdfobject {
+                border: solid 1px #666;
+            }
+
+            #result { padding: 1rem;}
+            .hidden {display: none;}
+            .success { color: #4F8A10; background-color: #DFF2BF; }
+            .fail { color: #D8000C; background-color: #FFBABA; }
+        </style>
+    </head>
+    <body>
+        <h1>PDFObject Example: Replace one PDF with another one</h1>
+
+        <p><a href="../pdf/sample.pdf" class="pdf-link">Link to "sample.pdf"</a></p>
+        <p><a href="../pdf/sample-3pp.pdf" class="pdf-link">Link to "sample-3pp.pdf"</a></p>
+        <p><a href="../pdf/wrong.pdf" class="pdf-link">Link to "wrong.pdf"</a></p>
+        <!-- The file "wrong.pdf" does not exist. -->
+
+        <div id="result" class="hidden">Result</div>
+        <div id="pdf"></div>
+
+        <script src="../js/pdfobject.min.js"></script>
+        <script>
+
+            function isUrlAlive(url) {
+
+                // Reference:
+                // [1] https://www.kirupa.com/html5/check_if_internet_connection_exists_in_javascript.htm
+                //     (note) However, the parameter 'async' for 'xhr.open(...)' should be "false" so that this way works.
+                //
+                // [2] http://www.webdeveloper.com/forum/showthread.php?165298-javascript-to-check-if-url-exist
+
+                var isAvail = false;
+
+                var xhr = new XMLHttpRequest();
+                var randNum = Math.round(Math.random() * 10000);
+
+                try {
+                    xhr.open('HEAD', url + "?rand=" + randNum, false);
+                    xhr.send();
+                    isAvail = (xhr.status == 200) ? true : false;
+                } catch(err) {
+                    return false;
+                }
+
+                return isAvail;
+                
+            }
+
+            
+            var pdfClickHandler = function (e) {
+                e.preventDefault();
+                
+                var pdfURL = this.getAttribute("href");
+                var options = {
+                    pdfOpenParams: {
+                        navpanes: 0,
+                        toolbar: 0,
+                        statusbar: 0,
+                        view: "FitV"
+                    }
+                };
+
+                var res = document.querySelector("#result") ;
+                if (isUrlAlive(pdfURL)) {
+                    var myPDF = PDFObject.embed(pdfURL, "#pdf", options );
+                    
+                    res.setAttribute("class", (myPDF) ? "success" : "fail");
+                    res.innerHTML = (myPDF) ? "PDFObject successfully embbed '" + pdfURL + "'." : "The embed didn't work.";
+                } else {
+                    var pdfDiv = document.getElementById("pdf");
+                    pdfDiv.innerHTML = "";
+
+                    res.setAttribute("class", "fail");
+                    res.innerHTML = "PDF is unavailable";
+                }
+            };
+
+            var pdfEle = document.querySelectorAll(".pdf-link");
+            for (var i=0; i < pdfEle.length; i++) {
+                pdfEle[i].addEventListener("click", pdfClickHandler);
+            }
+
+        </script>
+
+    </body>
+</html>
